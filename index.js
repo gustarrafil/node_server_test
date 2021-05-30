@@ -57,9 +57,9 @@ app.get(`${endpoint}/:id`, function(req, res){
         res.send(note);
     }   
 });
-app.get(`${endpointTransaction}/:transactionId`, function(req, res){
-    const transactionId = req.params.transactionId;
-    const transaction = transactions[transactionId];
+app.get(`${endpointTransaction}/:id`, function(req, res){
+    const id = req.params.id;
+    const transaction = transactions[id];
 
     if (!transaction){
         res.send("{}");
@@ -70,9 +70,10 @@ app.get(`${endpointTransaction}/:transactionId`, function(req, res){
 
 app.post(endpointTransaction, (req, res) => {
     const transaction = {
-        id : transactions.length,
-        title : req.body["title"],
-        description : req.body["description"]
+        id: transactions.length,
+        currencyPair: req.body["currencyPair"],
+        orderPrice: req.body["orderPrice"],
+        quantity: req.body["quantity"]
     };
     transactions.push(transaction);
     res.send("1");
@@ -91,15 +92,16 @@ app.post(endpoint, (req, res) => {
     notify();
 });
 
-app.put(`${endpointTransaction}/:transactionId`, (req, res) =>{
-    const transactionId = parseInt(req.params.transactionId);
+app.put(`${endpointTransaction}/:id`, (req, res) =>{
+    const id = parseInt(req.params.id);
     const transaction = {
-        id : transactionId,
-        title : req.body["title"],
-        description : req.body["description"]
+        id: id,
+        currencyPair: req.body["currencyPair"],
+        orderPrice: req.body["orderPrice"],
+        quantity: req.body["quantity"]
     };
 
-    transactions[transactionId] = transaction;
+    transactions[id] = transaction;
     res.send("1");
 
     notify();
@@ -118,9 +120,9 @@ app.put(`${endpoint}/:id`, (req, res) =>{
     notify();
 });
 
-app.delete(`${endpointTransaction}/:transactionId`, (req, res) => {
-    const transactionId = req.params.transactionId;
-    delete transactions[transactionId];
+app.delete(`${endpointTransaction}/:id`, (req, res) => {
+    const id = req.params.id;
+    delete transactions[id];
     res.send("1");
 
     // Notificar todos
