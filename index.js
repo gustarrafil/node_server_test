@@ -28,7 +28,14 @@ const notes = [
         description : "Aluna da Unicamp não tão feliz"
     }
 ]
-const transactions = []
+const transactions = [
+    {
+        id: 0,
+        currencyPair: "",
+        orderPrice: 0,
+        quantity: 0
+    }
+]
 
 const endpoint = "/notes";
 const endpointTransaction = "/transaction";
