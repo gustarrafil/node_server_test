@@ -15,12 +15,6 @@ app.get('/', function(req, res){res.send('Hello world')});
 */
 
 const transactions = [
-    {
-        id: 0,
-        currencyPair: "",
-        orderPrice: 0.0,
-        quantity: 0.0
-    }
 ]
 
 const endpoint = "/transactions";
