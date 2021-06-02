@@ -18,8 +18,8 @@ const transactions = [
     {
         id: 0,
         currencyPair: "",
-        orderPrice: 0,
-        quantity: 0
+        orderPrice: 0.0,
+        quantity: 0.0
     }
 ]
 
