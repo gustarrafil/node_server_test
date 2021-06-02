@@ -1,5 +1,3 @@
-// https://server-test-aula-mobile.herokuapp.com/
-
 
 const express = require('express');
 const cors = require("cors")
@@ -10,24 +8,12 @@ app.use(cors());
 // app.listen(3000);
 
 
-app.get('/', function(req, res){res.send('pagina inicial')});
+app.get('/', function(req, res){res.send('Hello world')});
 
 /*
   Servidor propriamente dito
 */
 
-const notes = [
-    {
-        id: 0, 
-        title: "Vinícius Nonato Rodrigues", 
-        description : "Aluno da Unicamp feliz"
-    },
-    {
-        id: 1, 
-        title: "Carolina da Silva Sancho", 
-        description : "Aluna da Unicamp não tão feliz"
-    }
-]
 const transactions = [
     {
         id: 0,
@@ -37,27 +23,13 @@ const transactions = [
     }
 ]
 
-const endpoint = "/notes";
-const endpointTransaction = "/transaction";
+const endpoint = "/transactions";
 
 app.get(endpoint, function(req, res){
-    res.send(notes.filter(Boolean));
-});
-app.get(endpointTransaction, function(req, res){
     res.send(transactions.filter(Boolean));
 });
 
 app.get(`${endpoint}/:id`, function(req, res){
-    const id = req.params.id;
-    const note = notes[id];
-
-    if (!note){
-        res.send("{}");
-    } else {
-        res.send(note);
-    }   
-});
-app.get(`${endpointTransaction}/:id`, function(req, res){
     const id = req.params.id;
     const transaction = transactions[id];
 
@@ -68,7 +40,7 @@ app.get(`${endpointTransaction}/:id`, function(req, res){
     }   
 });
 
-app.post(endpointTransaction, (req, res) => {
+app.post(endpoint, (req, res) => {
     const transaction = {
         id: transactions.length,
         currencyPair: req.body["currencyPair"],
@@ -80,22 +52,11 @@ app.post(endpointTransaction, (req, res) => {
 
     notify();
 });
-app.post(endpoint, (req, res) => {
-    const note = {
-        id : notes.length,
-        title : req.body["title"],
-        description : req.body["description"]
-    };
-    notes.push(note);
-    res.send("1");
 
-    notify();
-});
-
-app.put(`${endpointTransaction}/:id`, (req, res) =>{
+app.put(`${endpoint}/:id`, (req, res) =>{
     const id = parseInt(req.params.id);
     const transaction = {
-        id: id,
+        id : id,
         currencyPair: req.body["currencyPair"],
         orderPrice: req.body["orderPrice"],
         quantity: req.body["quantity"]
@@ -106,31 +67,10 @@ app.put(`${endpointTransaction}/:id`, (req, res) =>{
 
     notify();
 });
-app.put(`${endpoint}/:id`, (req, res) =>{
-    const id = parseInt(req.params.id);
-    const note = {
-        id : id,
-        title : req.body["title"],
-        description : req.body["description"]
-    };
 
-    notes[id] = note;
-    res.send("1");
-
-    notify();
-});
-
-app.delete(`${endpointTransaction}/:id`, (req, res) => {
-    const id = req.params.id;
-    delete transactions[id];
-    res.send("1");
-
-    // Notificar todos
-    notify();
-});
 app.delete(`${endpoint}/:id`, (req, res) => {
     const id = req.params.id;
-    delete notes[id];
+    delete transactions[id];
     res.send("1");
 
     // Notificar todos
