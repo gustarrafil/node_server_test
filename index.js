@@ -22,7 +22,8 @@ const transactions = [
         "orderPrice": 34,
         "quantity": 0.05,
         "triggerValue": 123,
-        "trigger": true
+        "trigger": true,
+        "wallet": 100
     }
 ]
 
@@ -51,7 +52,8 @@ app.post(endpoint, (req, res) => {
         orderPrice: req.body["orderPrice"],
         quantity: req.body["quantity"],
         triggerValue: req.body["triggerValue"],
-        trigger: req.body["trigger"]
+        trigger: req.body["trigger"],
+        wallet: req.body["wallet"],
     };
     transactions.push(transaction);
     res.send("1");
@@ -68,7 +70,8 @@ app.put(`${endpoint}/:id`, (req, res) =>{
         orderPrice: req.body["orderPrice"],
         quantity: req.body["quantity"],
         triggerValue: req.body["triggerValue"],
-        trigger: req.body["trigger"]
+        trigger: req.body["trigger"],
+        wallet: req.body["wallet"],
     };
 
     transactions[id] = transaction;
