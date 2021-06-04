@@ -38,6 +38,7 @@ app.post(endpoint, (req, res) => {
     const transaction = {
         id: transactions.length,
         currencyPair: req.body["currencyPair"],
+        buySell: req.body["buySell"],
         orderPrice: req.body["orderPrice"],
         quantity: req.body["quantity"]
     };
@@ -52,6 +53,7 @@ app.put(`${endpoint}/:id`, (req, res) =>{
     const transaction = {
         id : id,
         currencyPair: req.body["currencyPair"],
+        buySell: req.body["buySell"],
         orderPrice: req.body["orderPrice"],
         quantity: req.body["quantity"]
     };
