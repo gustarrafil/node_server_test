@@ -20,7 +20,8 @@ const transactions = [
         "currencyPair": "btc",
         "buySell": true,
         "orderPrice": 34,
-        "quantity": 0.05
+        "quantity": 0.05,
+        "triggerValue": 123
     }
 ]
 
@@ -47,7 +48,8 @@ app.post(endpoint, (req, res) => {
         currencyPair: req.body["currencyPair"],
         buySell: req.body["buySell"],
         orderPrice: req.body["orderPrice"],
-        quantity: req.body["quantity"]
+        quantity: req.body["quantity"],
+        triggerValue: req.body["triggerValue"]
     };
     transactions.push(transaction);
     res.send("1");
@@ -62,7 +64,8 @@ app.put(`${endpoint}/:id`, (req, res) =>{
         currencyPair: req.body["currencyPair"],
         buySell: req.body["buySell"],
         orderPrice: req.body["orderPrice"],
-        quantity: req.body["quantity"]
+        quantity: req.body["quantity"],
+        triggerValue: req.body["triggerValue"]
     };
 
     transactions[id] = transaction;
