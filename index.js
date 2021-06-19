@@ -22,7 +22,7 @@ const transactions = [
         "quantity": 0.05,
         // "triggerValue": 123,
         // "trigger": true,
-        // "wallet": 100
+        "wallet": 100.0,
         "dateTime": date = new Date()
     }
 ]
@@ -53,7 +53,7 @@ app.post(endpoint, (req, res) => {
         quantity: req.body["quantity"],
         // triggerValue: req.body["triggerValue"],
         // trigger: req.body["trigger"],
-        // wallet: req.body["wallet"],
+        wallet: req.body["wallet"],
         dateTime: req.body["dateTime"],
     };
     transactions.push(transaction);
@@ -72,7 +72,7 @@ app.put(`${endpoint}/:id`, (req, res) =>{
         quantity: req.body["quantity"],
         // triggerValue: req.body["triggerValue"],
         // trigger: req.body["trigger"],
-        // wallet: req.body["wallet"],
+        wallet: req.body["wallet"],
         dateTime: req.body["dateTime"],
     };
 
