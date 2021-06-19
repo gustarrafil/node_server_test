@@ -96,7 +96,6 @@ app.delete(`${endpoint}/:id`, (req, res) => {
   Criar um socket para notificar usuários das mudanças.
 */
 
-
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
