@@ -33,9 +33,6 @@ const endpoint = "/transactions";
 app.get(endpoint, function(req, res){
     res.send(transactions.filter(Boolean));
 });
-app.get(endpointConta, function(req, res){
-    res.send(usuarios.filter(Boolean));
-});
 
 app.get(`${endpoint}/:id`, function(req, res){
     const id = req.params.id;
