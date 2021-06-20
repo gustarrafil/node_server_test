@@ -24,18 +24,11 @@ const transactions = [
         // "trigger": true,
         "wallet": 100.0,
         "dateTime": date = new Date(),
-        // "userName": "gustavo",
-    }
-]
-const usuarios = [
-    {
-        "id": 0,
-        "userName": "gustavoendpoint",
+        "userName": "gustavo",
     }
 ]
 
 const endpoint = "/transactions";
-const endpointConta = "/account";
 
 app.get(endpoint, function(req, res){
     res.send(transactions.filter(Boolean));
@@ -54,16 +47,6 @@ app.get(`${endpoint}/:id`, function(req, res){
         res.send(transaction);
     }   
 });
-app.get(`${endpointConta}/:id`, function(req, res){
-    const id = req.params.id;
-    const usuario = usuarios[id];
-
-    if (!usuario){
-        res.send("{}");
-    } else {
-        res.send(usuario);
-    }   
-});
 
 app.post(endpoint, (req, res) => {
     const transaction = {
@@ -76,18 +59,9 @@ app.post(endpoint, (req, res) => {
         // trigger: req.body["trigger"],
         wallet: req.body["wallet"],
         dateTime: req.body["dateTime"],
-        // userName: req.body["userName"],
-    };
-    transactions.push(transaction);
-    res.send("1");
-    notify();
-});
-app.post(endpointConta, (req, res) => {
-    const usuario = {
-        id: usuarios.length,
         userName: req.body["userName"],
     };
-    usuarios.push(usuario);
+    transactions.push(transaction);
     res.send("1");
     notify();
 });
