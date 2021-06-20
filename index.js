@@ -29,6 +29,7 @@ const transactions = [
 ]
 const usuarios = [
     {
+        "id": 0,
         "userName": "gustavoendpoint",
     }
 ]
