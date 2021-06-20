@@ -23,7 +23,8 @@ const transactions = [
         // "triggerValue": 123,
         // "trigger": true,
         "wallet": 100.0,
-        "dateTime": date = new Date()
+        "dateTime": date = new Date(),
+        "userName": "gustavo",
     }
 ]
 
@@ -55,6 +56,7 @@ app.post(endpoint, (req, res) => {
         // trigger: req.body["trigger"],
         wallet: req.body["wallet"],
         dateTime: req.body["dateTime"],
+        userName: req.body["userName"],
     };
     transactions.push(transaction);
     res.send("1");
@@ -74,6 +76,7 @@ app.put(`${endpoint}/:id`, (req, res) =>{
         // trigger: req.body["trigger"],
         wallet: req.body["wallet"],
         dateTime: req.body["dateTime"],
+        userName: req.body["userName"],
     };
 
     transactions[id] = transaction;
