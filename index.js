@@ -29,6 +29,7 @@ const transactions = [
     }
 ]
 
+
 const endpoint = "/transactions";
 
 app.get(endpoint, function(req, res){
